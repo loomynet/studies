@@ -1,0 +1,4 @@
+C:\Users\megav\OneDrive\Dators\WBAPIFetch_winforms_solution\WBAPIFetch_UI\x64\Debug\WBAPIFetch_UI.vcxproj.AssemblyReference.cache
+C:\Users\megav\OneDrive\Dators\WBAPIFetch_winforms_solution\WBAPIFetch_UI\x64\Debug\WBAPIFetch_UI.Form1.resources
+C:\Users\megav\OneDrive\Dators\WBAPIFetch_winforms_solution\WBAPIFetch_UI\x64\Debug\WBAPIFetch_UI.vcxproj.GenerateResource.cache
+C:\Users\megav\OneDrive\Dators\WBAPIFetch_winforms_solution\WBAPIFetch_UI\x64\Debug\WBAPIFetch_UI.vcxproj.CopyComplete
