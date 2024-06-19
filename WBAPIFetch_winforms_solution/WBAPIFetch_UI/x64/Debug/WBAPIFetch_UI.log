@@ -1,7 +1,0 @@
-﻿  CppCLR_WinFormsProject.cpp
-C:\Users\megav\OneDrive\Dators\WBAPIFetch_winforms_solution\WBAPIFetch_UI\CppCLR_WinFormsProject.cpp(66,28): warning C4101: 'e': unreferenced local variable
-C:\Users\megav\OneDrive\Dators\WBAPIFetch_winforms_solution\WBAPIFetch_UI\CppCLR_WinFormsProject.cpp(278,1): warning C4829: Possibly incorrect parameters to function main. Consider 'int main(Platform::Array<Platform::String^>^ argv)'
-  AssemblyInfo.obj : MSIL module encountered; incremental linking is disabled for MSIL; performing full link
-  WBAPIFetch_UI.vcxproj -> C:\Users\megav\OneDrive\Dators\WBAPIFetch_winforms_solution\x64\Debug\WBAPIFetch_UI.exe
-  'pwsh.exe' is not recognized as an internal or external command,
-  operable program or batch file.
