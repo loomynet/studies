@@ -29,7 +29,7 @@ class _RegisterPageState extends State<RegisterPage> {
       _isLoading = false;
     });
     if (success) {
-      Navigator.of(context).pushNamedAndRemoveUntil('/', (route) => false);
+      Navigator.pushReplacementNamed(context, '/');
     } else {
       setState(() {
         _errorMessage = 'Registration failed. Please try again.';
@@ -42,7 +42,6 @@ class _RegisterPageState extends State<RegisterPage> {
     return Scaffold(
       appBar: AppBar(
         title: const Text('Register'),
-        leading: Container(),
       ),
       body: Padding(
         padding: const EdgeInsets.all(16.0),

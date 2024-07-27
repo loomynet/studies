@@ -41,15 +41,8 @@ class _LoginPageState extends State<LoginPage> {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
+        automaticallyImplyLeading: false,
         title: const Text('Login'),
-        leading: ModalRoute.of(context)?.isFirst ?? false
-            ? null
-            : IconButton(
-                icon: const Icon(Icons.arrow_back),
-                onPressed: () {
-                  Navigator.maybePop(context);
-                },
-              ),
       ),
       body: Padding(
         padding: const EdgeInsets.all(16.0),

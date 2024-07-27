@@ -18,6 +18,7 @@ class _CryptoListScreenState extends State<CryptoListScreen> {
       appBar: AppBar(
         backgroundColor: Theme.of(context).primaryColor,
         title: const Text('Imba'),
+        automaticallyImplyLeading: false,
         centerTitle: true,
       ),
       body: ListView.separated(
