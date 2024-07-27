@@ -20,6 +20,14 @@ class _CryptoListScreenState extends State<CryptoListScreen> {
         title: const Text('Imba'),
         automaticallyImplyLeading: false,
         centerTitle: true,
+        actions: [
+            IconButton(
+            icon: const Icon(Icons.account_circle),
+            onPressed: () {
+              Navigator.pushNamed(context, '/profile');
+            },
+          ),
+        ],
       ),
       body: ListView.separated(
         itemCount: 10,
