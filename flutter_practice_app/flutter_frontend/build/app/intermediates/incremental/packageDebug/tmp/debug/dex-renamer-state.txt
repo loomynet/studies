@@ -1,4 +1,4 @@
-#Sun Jul 28 15:34:03 EEST 2024
+#Sun Jul 28 21:52:50 EEST 2024
 base.0=/home/andrejs/studies/flutter_practice_app/flutter_frontend/build/app/intermediates/dex/debug/mergeExtDexDebug/classes.dex
 base.1=/home/andrejs/studies/flutter_practice_app/flutter_frontend/build/app/intermediates/dex/debug/mergeLibDexDebug/0/classes.dex
 base.2=/home/andrejs/studies/flutter_practice_app/flutter_frontend/build/app/intermediates/dex/debug/mergeProjectDexDebug/0/classes.dex
