@@ -1,5 +1,4 @@
 <!DOCTYPE html>
-<html>
     <head>
         <title>Transactions</title>
         <style>
@@ -52,4 +51,3 @@
             </tfoot>
         </table>
     </body>
-</html>
