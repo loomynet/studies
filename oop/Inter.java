@@ -1,7 +1,7 @@
 import java.util.ArrayList;
 import java.util.List;
 
-public class inter {
+public class Inter {
     
     public interface Playable {
         void play();
