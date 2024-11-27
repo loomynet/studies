@@ -53,8 +53,8 @@ public class Lab1 {
 
         // Display method
         public void display() {
-            System.out.println(real + " + " + imaginary + "i");
-        }
+            System.out.println(String.format("%.2f + %.2fi", real, imaginary));
+        }        
 
         public void setReal(double real) {
             this.real = real;
@@ -82,22 +82,22 @@ public class Lab1 {
         Complex complex = new Complex(3, 4);
         Complex complexCompare = new Complex(3, 5);
 
-        System.out.println("\nComplex Number: ");
+        System.out.println("\nInitial complex number:");
         complex.display();
 
-        System.out.println("\nAddition:");
-        Complex sum = complex.add(1,1);
+        System.out.println("\nAdd (1+2i):");
+        Complex sum = complex.add(1,2);
         sum.display();
 
-        System.out.println("\nSubtraction:");
+        System.out.println("\nSubtract (3+5i):");
         Complex difference = complex.sub(3, 5);
         difference.display();
 
-        System.out.println("\nMultiplication:");
+        System.out.println("\nMultiply by (2+9i):");
         Complex product = complex.mul(2, 9);
         product.display();
 
-        System.out.println("\nDivision:");
+        System.out.println("\nDivide by (0+0i):");
         try {
             Complex quotient = complex.div(0, 0);
             quotient.display();
@@ -105,25 +105,37 @@ public class Lab1 {
             System.out.println(e.getMessage());
         }
 
-        System.out.println("\nConjugate of Complex Number:");
+        System.out.println("\nDivide by (3+7i):");
+        try {
+            Complex quotient = complex.div(3, 7);
+            quotient.display();
+        } catch (ArithmeticException e) {
+            System.out.println(e.getMessage());
+        }
+
+        System.out.println("\nConjugate of initial complex number:");
         Complex conjugate = complex.conjugate();
         conjugate.display();
 
-        System.out.println("\nAre Complex Number 1 and Complex Number 2 equal?");
+        System.out.println("\nAre initial complex number and complex number 3+5i equal?");
         System.out.println(complex.compare(complexCompare) ? "Yes" : "No");
 
-        System.out.println("\nSet the real number to 1: ");
+        System.out.println("\nAre initial complex number and complex number 3+4i equal?");
+        System.out.println(complex.compare(complex) ? "Yes" : "No");
+
+
+        System.out.println("\nSet the real number of initial complex number to 1:");
         complex.setReal(1);
         complex.display();
 
-        System.out.println("\nSet the imaginary number to 1: ");
+        System.out.println("\nSet the imaginary number of initial complex number to 1:");
         complex.setImaginary(1);
         complex.display();
 
-        System.out.println("\nGet the real number: ");
+        System.out.println("\nGet the real number:");
         System.out.println(complex.getReal());
 
-        System.out.println("\nGet the imaginary number: ");
+        System.out.println("\nGet the imaginary number:");
         System.out.println(complex.getImaginary());
     }
 }
