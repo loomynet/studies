@@ -1,3 +1,6 @@
+import java.text.SimpleDateFormat;
+import java.util.Calendar;
+
 public class Lab2 {
     public static class Complex {
         private double real;
@@ -158,13 +161,49 @@ public class Lab2 {
         public void display() {
             System.out.printf("%.2f + %.2fi + %.2fj + %.2fk%n", real, i, j, k);
         }
+
+        // Getters and Setters
+        public double getReal() {
+            return real;
+        }
+
+        public double getI() {
+            return i;
+        }
+
+        public double getJ() {
+            return j;
+        }
+
+        public double getK() {
+            return k;
+        }
+
+        public void setReal(double real) {
+            this.real = real;
+        }
+
+        public void setI(double i) {
+            this.i = i;
+        }
+
+        public void setJ(double j) {
+            this.j = j;
+        }
+
+        public void setK(double k) {
+            this.k = k;
+        }
     }
         // Main 
         public static void main(String[] args) {
+            System.out.println("Author: Andrejs Jakunins");
+            String timeStamp = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss").format(Calendar.getInstance().getTime());
+            System.out.println("Date and time: " + timeStamp);
 
             Quaternion q1 = new Quaternion(1, 2, 3, 4);
 
-            System.out.println("Quaternion 1:");
+            System.out.println("\nQuaternion 1:");
             q1.display();
 
             System.out.println("\nAddition (q1 + (5 + 6i + 7j + 8k)):");
