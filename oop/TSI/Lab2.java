@@ -145,7 +145,16 @@ public class Lab2 {
             return this.multiply(inverseOther.real, inverseOther.i, inverseOther.j, inverseOther.k);
         }
 
-        // Method to display the quaternion
+        // Normalization
+        public Quaternion normalize() {
+            double magnitude = Math.sqrt(this.norm());
+            if (magnitude == 0) {
+                throw new ArithmeticException("Cannot normalize a quaternion with zero magnitude.");
+            }
+            return new Quaternion(this.real / magnitude, this.i / magnitude, this.j / magnitude, this.k / magnitude);
+        }
+
+        // Display the quaternion
         public void display() {
             System.out.printf("%.2f + %.2fi + %.2fj + %.2fk%n", real, i, j, k);
         }
@@ -174,6 +183,14 @@ public class Lab2 {
             try {
                 Quaternion quotient = q1.divide(5, 6, 7, 8);
                 quotient.display();
+            } catch (ArithmeticException e) {
+                System.out.println(e.getMessage());
+            }
+
+            System.out.println("\nNormalization of Quaternion 1:");
+            try {
+                Quaternion normalized = q1.normalize();
+                normalized.display();
             } catch (ArithmeticException e) {
                 System.out.println(e.getMessage());
             }
