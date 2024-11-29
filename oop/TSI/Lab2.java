@@ -71,39 +71,111 @@ public class Lab2 {
 
     }
 
-    public class Quaternion {
+    public static class Quaternion {
         private double real;
-        private double imaginary;
+        private double i;
         private double j;
         private double k;
 
-        public Quaternion(double real, double imaginary, double j, double k) {
+        //Constructors
+        public Quaternion(double real, double i, double j, double k) {
             this.real = real;
-            this.imaginary = imaginary;
+            this.i = i;
             this.j = j;
             this.k = k;
         }
 
-        public Quaternion(double real, double imaginary) {
+        public Quaternion(double real, double i) {
             this.real = real;
-            this.imaginary = imaginary;
+            this.i = i;
             this.j = 0;
             this.k = 0;
         }    
 
         public Quaternion() {
             this.real = 0;
-            this.imaginary = 0;
+            this.i = 0;
             this.j = 0;
             this.k = 0;
         }
         
-        public Quaternion add(double real, double imaginary, double j, double k) {
-            return new Quaternion(this.real + real, this.imaginary + imaginary, this.j + j, this.k + k);
+        // Addition
+        public Quaternion add(double real, double i, double j, double k) {
+            return new Quaternion(this.real + real, this.i + i, this.j + j, this.k + k);
         }
-        
+
+        // Subtraction
+        public Quaternion subtract(double real, double i, double j, double k) {
+            return new Quaternion(this.real - real, this.i - i, this.j - j, this.k - k);
+        }
+
+        // Multiplication
+        public Quaternion multiply(double real, double i, double j, double k) {
+            double newReal = (this.real * real) - (this.i * i) - (this.j * j) - (this.k * k);
+            double newI = (this.real * i) + (this.i * real) + (this.j * k) - (this.k * j);
+            double newJ = (this.real * j) - (this.i * k) + (this.j * real) + (this.k * i);
+            double newK = (this.real * k) + (this.i * j) - (this.j * i) + (this.k * real);
+            return new Quaternion(newReal, newI, newJ, newK);
+        }
+
+        //Conjugate of a quaternion
+        public Quaternion conjugate() {
+            return new Quaternion(this.real, -this.i, -this.j, -this.k);
+        }
+
+        // Magnitude squared of a quaternion
+        public double norm() {
+            return (real * real) + (i * i) + (j * j) + (k * k);
+        }
+
+        // Inverse of a quaternion
+        public Quaternion inverse() {
+            double normSquared = this.norm();
+            if (normSquared == 0) {
+                throw new ArithmeticException("Cannot invert a quaternion with zero magnitude.");
+            }
+            Quaternion conjugate = this.conjugate();
+            return new Quaternion(conjugate.real / normSquared, conjugate.i / normSquared, conjugate.j / normSquared, conjugate.k / normSquared);
+        }
+
+        // Divide
+        public Quaternion divide(double real, double i, double j, double k) {
+            Quaternion other = new Quaternion(real, i, j, k);
+            Quaternion inverseOther = other.inverse();
+            return this.multiply(inverseOther.real, inverseOther.i, inverseOther.j, inverseOther.k);
+        }
+
+        // Method to display the quaternion
+        public void display() {
+            System.out.printf("%.2f + %.2fi + %.2fj + %.2fk%n", real, i, j, k);
+        }
     }
-    public static void main(String[] args) {
-        
-    }
+        // Main 
+        public static void main(String[] args) {
+
+            Quaternion q1 = new Quaternion(1, 2, 3, 4);
+
+            System.out.println("Quaternion 1:");
+            q1.display();
+
+            System.out.println("\nAddition (q1 + (5 + 6i + 7j + 8k)):");
+            Quaternion sum = q1.add(5, 6, 7, 8);
+            sum.display();
+
+            System.out.println("\nSubtraction (q1 - (5 - 6i - 7j - 8k)):");
+            Quaternion difference = q1.subtract(5, 6, 7, 8);
+            difference.display();
+
+            System.out.println("\nMultiplication (q1 * (5 + 6i + 7j + 8k)):");
+            Quaternion product = q1.multiply(5, 6, 7, 8);
+            product.display();
+
+            System.out.println("\nDivision (q1 / (5 + 6i + 7j + 8k)):");
+            try {
+                Quaternion quotient = q1.divide(5, 6, 7, 8);
+                quotient.display();
+            } catch (ArithmeticException e) {
+                System.out.println(e.getMessage());
+            }
+        }
 }
