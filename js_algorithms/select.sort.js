@@ -1,5 +1,7 @@
 array = [60,75,80,50,90]
 
+var aboba;
+
 function selectSort(array) {
     len = array.length - 1;
     var minIndex;
