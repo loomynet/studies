@@ -107,6 +107,10 @@ public class Lab2 {
             return new Quaternion(this.real + real, this.i + i, this.j + j, this.k + k);
         }
 
+        public Quaternion add(double real, double i) {
+            return new Quaternion(this.real + real, this.i + i, this.j, this.k);
+        }
+
         // Subtraction
         public Quaternion subtract(double real, double i, double j, double k) {
             return new Quaternion(this.real - real, this.i - i, this.j - j, this.k - k);
@@ -209,6 +213,10 @@ public class Lab2 {
             System.out.println("\nAddition (q1 + (5 + 6i + 7j + 8k)):");
             Quaternion sum = q1.add(5, 6, 7, 8);
             sum.display();
+
+            System.out.println("\nAddition (q1 + (4 + 3i)):");
+            Quaternion sumTwo = q1.add(4, 3);
+            sumTwo.display();
 
             System.out.println("\nSubtraction (q1 - (5 - 6i - 7j - 8k)):");
             Quaternion difference = q1.subtract(5, 6, 7, 8);
