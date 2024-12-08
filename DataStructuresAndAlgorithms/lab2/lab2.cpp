@@ -115,22 +115,24 @@ int main() {
 
     // initial data from lms wirh unknown symbols
     
-    // std::ifstream f ("initial.data");
+    /*
+    std::ifstream f ("initial.data");
 
-    // if (!f.is_open()) {
-    //     std::cerr << "Error opening the file!";
-    //     return 1;
-    // }
+    if (!f.is_open()) {
+        std::cerr << "Error opening the file!";
+        return 1;
+    }
     
-    // std::string s;
+    std::string s;
 
-    // while (getline(f, s)){
-    //     std::cout << s << std::endl;
-    // }
-    // f.close();
+    while (getline(f, s)){
+        std::cout << s << std::endl;
+    }
+    f.close();
+    */
 
     // the same data but without unknown symbols
-    const std::string filename = "clients.data";
+    const std::string filename = "data/clients.data";
     std::queue<int> dataQueue = readDataFromFile(filename);
 
     if (dataQueue.empty()) {
@@ -146,7 +148,7 @@ int main() {
 
     addElementToBeginning(dataQueue, 200);
 
-    addElementAfter(dataQueue, 25, 300);
+    addElementAfter(dataQueue, 544, 300);
 
     deleteElement(dataQueue, 140);
 
