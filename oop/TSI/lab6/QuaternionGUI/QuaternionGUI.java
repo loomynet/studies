@@ -10,16 +10,15 @@ public class QuaternionGUI {
         JFrame frame = new JFrame("Quaternion Operations");
         frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         frame.setSize(1024, 768);
-        frame.setLayout(new BorderLayout());
         frame.setResizable(false);
 
         ArrayList<Quaternion> quaternions = new ArrayList<>();
 
         JLabel newQuaternionLabel = new JLabel("Create Quaternion (Real, i, j, k):", SwingConstants.CENTER);
-        JTextField realField = new JTextField(5);
-        JTextField iField = new JTextField(5);
-        JTextField jField = new JTextField(5);
-        JTextField kField = new JTextField(5);
+        JTextField realField = new JTextField();
+        JTextField iField = new JTextField();
+        JTextField jField = new JTextField();
+        JTextField kField = new JTextField();
         JButton createButton = new JButton("Create Quaternion");
 
         JComboBox<String> quaternion1Selector = new JComboBox<>();
@@ -31,7 +30,7 @@ public class QuaternionGUI {
         JButton divideButton = new JButton("Divide");
 
         JLabel resultLabel = new JLabel("Result:");
-        JTextArea resultArea = new JTextArea(5, 40);
+        JTextArea resultArea = new JTextArea();
         resultArea.setEditable(false);
 
         createButton.addActionListener(e -> {
@@ -108,7 +107,7 @@ public class QuaternionGUI {
 
         gbc.gridy = 2;
         gbc.gridx = 0;
-        gbc.weightx = 0;
+        gbc.weightx = 1;
         panel.add(createButton, gbc);
 
         gbc.gridx = 0;
