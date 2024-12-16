@@ -30,6 +30,34 @@ img {
 	max-inline-size: 100%;
 }
 
+:root {
+	--light-color: #f5f5f7;
+	--dark-color: #221f20;
+	--container-padding-inline: 13%;
+	--footer-padding-inline: 10%;
+}
+
 html {
 	font-family: "Inter", sans-serif;
+}
+
+.container {
+	padding: 0 var(--container-padding-inline);
+}
+
+.promo {
+	height: 100vh;
+	background-image: url("../img/main_bg.jpg");
+	background-size: cover;
+	background-position: center;
+	background-repeat: no-repeat;
+	padding-top: 75px;
+}
+
+.promo__title {
+	font-family: Inter;
+	font-style: Regular;
+	text-transform: uppercase;
+	font-size: 45px;
+	color: var(--light-color);
 }
