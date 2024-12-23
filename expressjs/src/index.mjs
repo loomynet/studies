@@ -1,7 +1,9 @@
 import { PORT } from "./config/config.mjs";
-import express, { response } from "express";
+import express from "express";
 
 const app = express();
+
+app.use(express.json());
 
 const mockUsers = [
   { id: 1, username: "anson", displayName: "Anson" },
@@ -22,6 +24,9 @@ app.get("/api", (req, res) => {
 });
 
 app.get("/api/users", (req, res) => {
+  // Same as
+  // const filter = req.query.filter;
+  // const value = req.query.value;
   const {
     query: { filter, value },
   } = req;
@@ -29,6 +34,15 @@ app.get("/api/users", (req, res) => {
   if (filter && value)
     return res.send(mockUsers.filter((user) => user[filter].includes(value)));
   return res.send(mockUsers);
+});
+
+app.post("/api/users", (req, res) => {
+  console.log(req.body);
+  // const body = req.body;
+  const { body } = req;
+  const newUser = { id: mockUsers[mockUsers.length - 1].id + 1, ...body };
+  mockUsers.push(newUser);
+  return res.status(201).send(newUser);
 });
 
 app.get("/api/users/:id", (req, res) => {
