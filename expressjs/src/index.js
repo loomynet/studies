@@ -1,9 +1,21 @@
-import { PORT } from "./config/config.mjs";
+import { PORT } from "./config/config.js";
 import express from "express";
+import {
+  query,
+  validationResult,
+  body,
+  matchedData,
+  checkSchema,
+} from "express-validator";
+import { createUserValidationSchema } from "./utils/validationSchemas.js";
 
 const app = express();
 
 app.use(express.json());
+
+const myValidationResult = validationResult.withDefaults({
+  formatter: (error) => error.msg,
+});
 
 const loggingMiddleware = (req, res, next) => {
   console.log(`${req.method} - ${req.url}`);
@@ -41,23 +53,36 @@ app.get("/api", (req, res) => {
   res.status(200).send({ msg: "Hello" });
 });
 
-app.get("/api/users", (req, res) => {
-  // Same as
-  // const filter = req.query.filter;
-  // const value = req.query.value;
-  const {
-    query: { filter, value },
-  } = req;
-  if (filter && value)
-    return res.send(mockUsers.filter((user) => user[filter].includes(value)));
-  return res.send(mockUsers);
-});
+// TODO
+// Create validation schema for this method
+app.get(
+  "/api/users",
+  query("filter")
+    .isString()
+    .notEmpty()
+    .withMessage("Must not be empty")
+    .isLength({ min: 3, max: 10 })
+    .withMessage("Must be at least 3-10 characters"),
+  (req, res) => {
+    const result = validationResult(req);
+    console.log(result);
+    const {
+      query: { filter, value },
+    } = req;
+    if (filter && value)
+      return res.send(mockUsers.filter((user) => user[filter].includes(value)));
+    return res.send(mockUsers);
+  }
+);
 
-app.post("/api/users", (req, res) => {
-  console.log(req.body);
-  // const body = req.body;
-  const { body } = req;
-  const newUser = { id: mockUsers[mockUsers.length - 1].id + 1, ...body };
+app.post("/api/users", checkSchema(createUserValidationSchema), (req, res) => {
+  const result = myValidationResult(req);
+  if (!result.isEmpty()) {
+    return res.status(400).send({ errors: result.array() });
+  }
+
+  const data = matchedData(req);
+  const newUser = { id: mockUsers[mockUsers.length - 1].id + 1, ...data };
   mockUsers.push(newUser);
   return res.status(201).send(newUser);
 });
