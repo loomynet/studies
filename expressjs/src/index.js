@@ -5,6 +5,8 @@ import routes from "./routes/index.js";
 import cookieParser from "cookie-parser";
 import session from "express-session";
 import { mockUsers } from "./utils/constants.js";
+import passport from "passport";
+import "./strategies/local-strategy.js";
 
 const app = express();
 
@@ -20,34 +22,18 @@ app.use(
     },
   })
 );
+app.use(passport.initialize());
+app.use(passport.session());
 app.use(routes);
 
-app.listen(PORT, () => {
-  console.log(`Listening at: http://localhost:${PORT}`);
-});
-
-app.get("/api", (req, res) => {
-  res.cookie("hello", "world", { maxAge: 60000 * 60 * 2 });
-  res.status(200).send({ msg: "Hello" });
-});
-
-app.post("/api/auth", (req, res) => {
-  const {
-    body: { username, password },
-  } = req;
-  const findUser = mockUsers.find((user) => user.username === username);
-  if (!findUser || findUser.password !== password)
-    return res.status(401).send({ msg: "Bad credentials" });
-
-  req.session.user = findUser;
-  return res.status(200).send(findUser);
+app.post("/api/auth", passport.authenticate("local"), (req, res) => {
+  res.sendStatus(200);
 });
 
 app.get("/api/auth/status", (req, res) => {
-  req.sessionStore.get(req.sessionID, (err, session) => {
-    console.log(session);
-  });
-  return req.session.user
-    ? res.status(200).send(req.session.user)
-    : res.status(401).send({ msg: "Not authenticated" });
+  return req.user ? res.send(req.user) : res.sendStatus(401);
+});
+
+app.listen(PORT, () => {
+  console.log(`Listening at: http://localhost:${PORT}`);
 });
