@@ -3,7 +3,6 @@ import java.util.Calendar;
 
 public class Lab3 {
     
-    // Superclass Number
     public static abstract class Number {
         public abstract void info();
     }
@@ -12,30 +11,25 @@ public class Lab3 {
         private double real;
         private double imaginary;
 
-        // Constructor
         public Complex(double real, double imaginary) {
             this.real = real;
             this.imaginary = imaginary;
         }
 
-        // Addition
         public Complex add(double real, double imaginary) {
             return new Complex(this.real + real, this.imaginary + imaginary);
         }
 
-        // Subtraction
         public Complex sub(double real, double imaginary) {
             return new Complex(this.real - real, this.imaginary - imaginary);
         }
 
-        // Multiplication
         public Complex mul(double real, double imaginary) {
             double realPart = (this.real * real) - (this.imaginary * imaginary);
             double imaginaryPart = (this.real * imaginary) + (this.imaginary * real);
             return new Complex(realPart, imaginaryPart);
         }
 
-        // Division
         public Complex div(double real, double imaginary) throws ArithmeticException {
             double denominator = (real * real) + (imaginary * imaginary);
             if (denominator == 0) {
@@ -47,22 +41,18 @@ public class Lab3 {
             return new Complex(realPart, imaginaryPart);
         }
 
-        // Conjugate
         public Complex conjugate() {
             return new Complex(this.real, -this.imaginary);
         }
 
-        // Comparison
         public boolean compare(Complex other) {
             return (this.real == other.real) && (this.imaginary == other.imaginary);
         }
 
-        // Display method
         public void display() {
             System.out.println(String.format("%.2f + %.2fi", real, imaginary));
         }        
 
-        // Getters and Setters
         public void setReal(double real) {
             this.real = real;
         }
@@ -79,7 +69,6 @@ public class Lab3 {
             return this.imaginary;
         }
 
-        // Info
         @Override
         public void info() {
             System.out.println("This is a complex number with real part " + real + " and imaginary part " + imaginary);
@@ -92,7 +81,6 @@ public class Lab3 {
         private double j;
         private double k;
 
-        //Constructors
         public Quaternion(double real, double i, double j, double k) {
             this.real = real;
             this.i = i;
@@ -114,17 +102,14 @@ public class Lab3 {
             this.k = 0;
         }
         
-        // Addition
         public Quaternion add(double real, double i, double j, double k) {
             return new Quaternion(this.real + real, this.i + i, this.j + j, this.k + k);
         }
 
-        // Subtraction
         public Quaternion subtract(double real, double i, double j, double k) {
             return new Quaternion(this.real - real, this.i - i, this.j - j, this.k - k);
         }
 
-        // Multiplication
         public Quaternion multiply(double real, double i, double j, double k) {
             double newReal = (this.real * real) - (this.i * i) - (this.j * j) - (this.k * k);
             double newI = (this.real * i) + (this.i * real) + (this.j * k) - (this.k * j);
@@ -133,17 +118,14 @@ public class Lab3 {
             return new Quaternion(newReal, newI, newJ, newK);
         }
 
-        //Conjugate of a quaternion
         public Quaternion conjugate() {
             return new Quaternion(this.real, -this.i, -this.j, -this.k);
         }
 
-        // Magnitude squared of a quaternion
         public double norm() {
             return (real * real) + (i * i) + (j * j) + (k * k);
         }
 
-        // Inverse of a quaternion
         public Quaternion inverse() {
             double normSquared = this.norm();
             if (normSquared == 0) {
@@ -153,14 +135,12 @@ public class Lab3 {
             return new Quaternion(conjugate.real / normSquared, conjugate.i / normSquared, conjugate.j / normSquared, conjugate.k / normSquared);
         }
 
-        // Divide
         public Quaternion divide(double real, double i, double j, double k) {
             Quaternion other = new Quaternion(real, i, j, k);
             Quaternion inverseOther = other.inverse();
             return this.multiply(inverseOther.real, inverseOther.i, inverseOther.j, inverseOther.k);
         }
 
-        // Normalization
         public Quaternion normalize() {
             double magnitude = Math.sqrt(this.norm());
             if (magnitude == 0) {
@@ -169,12 +149,10 @@ public class Lab3 {
             return new Quaternion(this.real / magnitude, this.i / magnitude, this.j / magnitude, this.k / magnitude);
         }
 
-        // Display the quaternion
         public void display() {
             System.out.printf("%.2f + %.2fi + %.2fj + %.2fk%n", real, i, j, k);
         }
 
-        // Getters and Setters
         public double getReal() {
             return real;
         }
@@ -207,13 +185,11 @@ public class Lab3 {
             this.k = k;
         }
 
-        // Info
         @Override
         public void info() {
             System.out.println("This is a quaternion with components: " + real + " + " + i + "i + " + j + "j + " + k + "k");
         }
     }
-        // Main 
         public static void main(String[] args) {
             System.out.println("Author: Andrejs Jakunins");
             String timeStamp = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss").format(Calendar.getInstance().getTime());

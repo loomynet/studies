@@ -6,30 +6,25 @@ public class Lab1 {
         private double real;
         private double imaginary;
 
-        // Constructor
         public Complex(double real, double imaginary) {
             this.real = real;
             this.imaginary = imaginary;
         }
 
-        // Addition
         public Complex add(double real, double imaginary) {
             return new Complex(this.real + real, this.imaginary + imaginary);
         }
 
-        // Subtraction
         public Complex sub(double real, double imaginary) {
             return new Complex(this.real - real, this.imaginary - imaginary);
         }
 
-        // Multiplication
         public Complex mul(double real, double imaginary) {
             double realPart = (this.real * real) - (this.imaginary * imaginary);
             double imaginaryPart = (this.real * imaginary) + (this.imaginary * real);
             return new Complex(realPart, imaginaryPart);
         }
 
-        // Division
         public Complex div(double real, double imaginary) throws ArithmeticException {
             double denominator = (real * real) + (imaginary * imaginary);
             if (denominator == 0) {
@@ -41,17 +36,14 @@ public class Lab1 {
             return new Complex(realPart, imaginaryPart);
         }
 
-        // Conjugate
         public Complex conjugate() {
             return new Complex(this.real, -this.imaginary);
         }
 
-        // Comparison
         public boolean compare(Complex other) {
             return (this.real == other.real) && (this.imaginary == other.imaginary);
         }
 
-        // Display method
         public void display() {
             System.out.println(String.format("%.2f + %.2fi", real, imaginary));
         }        
