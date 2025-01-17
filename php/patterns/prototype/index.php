@@ -1,4 +1,4 @@
-<?
+<?php
 
 interface Shape {
 	public function clone(): Shape;

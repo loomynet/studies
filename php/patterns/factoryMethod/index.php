@@ -1,43 +1,98 @@
 <?php
-interface Notification {
-	public function send( $message );
-}
 
-class EmailNotification implements Notification {
-	public function send( $message ) {
-		echo "Email sent: $message\n";
+abstract class SocialNetworkPoster {
+	abstract public function getSocialNetwork(): SocialNetworkConnector;
+
+	public function post( $content ): void {
+		$network = $this->getSocialNetwork();
+		$network->logIn();
+		$network->createPost( $content );
+		$network->logout();
 	}
 }
 
-class SMSNotification implements Notification {
-	public function send( $message ) {
-		echo "SMS sent: $message\n";
+class FacebookPoster extends SocialNetworkPoster {
+	private $login, $password;
+
+	public function __construct( string $login, string $password ) {
+		$this->login = $login;
+		$this->password = $password;
+	}
+
+	public function getSocialNetwork(): SocialNetworkConnector {
+		return new FacebookConnector( $this->login, $this->password );
 	}
 }
 
-abstract class NotificationFactory {
-	abstract public function createNotification(): Notification;
-}
+class LinkedInPoster extends SocialNetworkPoster {
+	private $email, $password;
 
-class EmailNotificationFactory extends NotificationFactory {
-	public function createNotification(): Notification {
-		return new EmailNotification();
+	public function __construct( string $email, string $password ) {
+		$this->email = $email;
+		$this->password = $password;
+	}
+
+	public function getSocialNetwork(): SocialNetworkConnector {
+		return new LinkedInConnector( $this->email, $this->password );
 	}
 }
 
-class SMSNotificationFactory extends NotificationFactory {
-	public function createNotification(): Notification {
-		return new SMSNotification();
+interface SocialNetworkConnector {
+	public function logIn(): void;
+
+	public function logOut(): void;
+
+	public function createPost( $content ): void;
+}
+
+class FacebookConnector implements SocialNetworkConnector {
+	private $login, $password;
+
+	public function __construct( string $login, string $password ) {
+		$this->login = $login;
+		$this->password = $password;
+	}
+
+	public function logIn(): void {
+		echo "Send HTTP API request to log in user $this->login with " .
+			"password $this->password\n<br>";
+	}
+
+	public function logOut(): void {
+		echo "Send HTTP API request to log out user $this->login\n<br>";
+	}
+
+	public function createPost( $content ): void {
+		echo "Send HTTP API requests to create a post in Facebook timeline.\n<br>";
 	}
 }
 
-function notifyUser( NotificationFactory $factory, $message ) {
-	$notification = $factory->createNotification();
-	$notification->send( $message );
+class LinkedInConnector implements SocialNetworkConnector {
+	private $email, $password;
+
+	public function __construct( string $email, string $password ) {
+		$this->email = $email;
+		$this->password = $password;
+	}
+
+	public function logIn(): void {
+		echo "Send HTTP API request to log in user $this->email with " .
+			"password $this->password\n<br>";
+	}
+
+	public function logOut(): void {
+		echo "Send HTTP API request to log out user $this->email\n<br>";
+	}
+
+	public function createPost( $content ): void {
+		echo "Send HTTP API requests to create a post in LinkedIn timeline.\n<br>";
+	}
 }
 
-$emailFactory = new EmailNotificationFactory();
-$smsFactory = new SMSNotificationFactory();
+function clientCode( SocialNetworkPoster $creator ) {
+	$creator->post( "Hello world!" );
+	$creator->post( "I had a large hamburger this morning!" );
+}
 
 ?>
 
@@ -47,14 +102,17 @@ $smsFactory = new SMSNotificationFactory();
 <head>
 	<meta charset="UTF-8">
 	<meta name="viewport">
-	<title>Test</title>
-	<link rel="icon" type="image/jpg" href="img/photo_2025-01-14_21-09-58.jpg">
+	<title>Document</title>
 </head>
 
 <body>
-	<?php notifyUser( $emailFactory, "Hello via Email!" ); ?>
-	<br>
-	<?php notifyUser( $smsFactory, "Hello via SMS!" ); ?>
+	<?php
+	echo "Testing ConcreteCreator1:\n<br>";
+	clientCode( new FacebookPoster( "john_smith", "******" ) );
+	echo "\n\n<br><br>";
+	echo "Testing ConcreteCreator2:\n<br>";
+	clientCode( new LinkedInPoster( "john_smith@example.com", "******" ) );
+	?>
 </body>
 
 </html>

@@ -1,4 +1,4 @@
-<?
+<?php
 class Meal {
 	private $items = [];
 
