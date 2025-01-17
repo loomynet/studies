@@ -37,22 +37,3 @@ $logger2->log( "This is the second log message." );
 
 echo "Logger 1 Logs: " . implode( ", ", $logger1->getLogs() ) . "\n";
 echo "Logger 2 Logs: " . implode( ", ", $logger2->getLogs() ) . "\n";
-
-?>
-
-<!DOCTYPE html>
-<html lang="en">
-
-<head>
-	<meta charset="UTF-8">
-	<meta name="viewport">
-	<title>Document</title>
-</head>
-
-<body>
-	<?
-
-	?>
-</body>
-
-</html>

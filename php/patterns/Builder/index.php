@@ -96,22 +96,3 @@ $nonVegDirector = new MealDirector( $nonVegBuilder );
 $nonVegDirector->buildMeal();
 $nonVegMeal = $nonVegDirector->getMeal();
 $nonVegMeal->showItems();
-
-?>
-
-<!DOCTYPE html>
-<html lang="en">
-
-<head>
-	<meta charset="UTF-8">
-	<meta name="viewport">
-	<title>Document</title>
-</head>
-
-<body>
-	<?
-
-	?>
-</body>
-
-</html>

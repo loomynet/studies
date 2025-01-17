@@ -59,23 +59,3 @@ $rectangle1 = $rectanglePrototype->clone();
 echo $circle1->getType() . "\n";
 echo $circle2->getType() . "\n";
 echo $rectangle1->getType() . "\n";
-
-
-?>
-
-<!DOCTYPE html>
-<html lang="en">
-
-<head>
-	<meta charset="UTF-8">
-	<meta name="viewport">
-	<title>Document</title>
-</head>
-
-<body>
-	<?
-
-	?>
-</body>
-
-</html>

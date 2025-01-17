@@ -66,27 +66,7 @@ function renderUI( UIFactory $factory ) {
 $lightFactory = new LightThemeFactory();
 $darkFactory = new DarkThemeFactory();
 
-?>
-
-<!DOCTYPE html>
-<html lang="en">
-
-<head>
-	<meta charset="UTF-8">
-	<meta name="viewport">
-	<title>Document</title>
-</head>
-
-<body>
-	<?php
-	echo "Using Light Theme: ";
-	renderUI( $lightFactory );
-	?>
-	<br>
-	<?php
-	echo "\nUsing Dark Theme: ";
-	renderUI( $darkFactory );
-	?>
-</body>
-
-</html>
+echo "Using Light Theme: ";
+renderUI( $lightFactory );
+echo "\nUsing Dark Theme: ";
+renderUI( $darkFactory );

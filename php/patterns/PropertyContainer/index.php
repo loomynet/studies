@@ -35,18 +35,18 @@ class Character extends PropertyContainer {
 		$this->name = $name;
 	}
 	public function displayName() {
-		echo "Character name: $this->name\n<br>";
+		echo "Character name: $this->name\n";
 	}
 	public function displayProperties() {
 		foreach ( $this->properties as $property => $value ) {
-			echo "$property: $value \n<br>";
+			echo "$property: $value \n";
 		}
 	}
 
 	public function displayInfo() {
-		echo "Character name: $this->name\n<br>";
+		echo "Character name: $this->name\n";
 		foreach ( $this->properties as $property => $value ) {
-			echo "$property: $value \n<br>";
+			echo "$property: $value \n";
 		}
 	}
 }
@@ -66,4 +66,4 @@ $aboba->deleteProperty( "Intelligence" );
 $aboba->displayInfo();
 
 $abobahp = $aboba->getProperty( "Health" );
-echo "<br> Character aboba health: $abobahp HP <br>";
+echo "Character aboba health: $abobahp HP";
