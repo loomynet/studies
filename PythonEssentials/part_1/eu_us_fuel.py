@@ -1,7 +1,3 @@
-mile_in_meters = 1609.344
-gallon_in_litres = 3.785411784
-
-
 def liters_100km_to_miles_gallon(liters):
     return 235.215 / (liters)
 
